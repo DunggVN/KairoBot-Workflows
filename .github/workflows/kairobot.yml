@@ -1,6 +1,6 @@
 #KairoBot Workflow by DunggVN
 
-name: Forkzilion Workflow
+name: KairoBot Workflow
 
 on:
     push:
@@ -29,7 +29,7 @@ jobs:
        - name: cloning repo
          continue-on-error: true
          run: |
-           git clone https://${{ secrets.GH_NAME }}:${{ secrets.GH_TOKEN }}@${{ secrets.CREDS }} forkzilion
+           git clone https://${{ secrets.GH_NAME }}:${{ secrets.GH_TOKEN }}@${{ secrets.CREDS }} kairobot
        - name: Running Forkzilion
          timeout-minutes: 350
          continue-on-error: true
@@ -42,5 +42,5 @@ jobs:
               cd loop || exit 1
               echo $(date -u +%T%P) >> loop.txt
               git add loop.txt
-              git commit -m "Workflows: Running Userbot"
-              git push -q https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:pruh
+              git commit -m "Workflows: Running KairoBot"
+              git push -q https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:main
