@@ -13,29 +13,28 @@ jobs:
     steps:
        - name: Checkout
          uses: actions/checkout@main
-       
        - uses: styfle/cancel-workflow-action@0.9.0
-         name: "Cancel duplicate workflow runs"
+         name: "Cancel Duplicate Workflows"
          with:
             all_but_latest: true
             access_token: ${{ github.token }}
-       - name: initialization
+       - name: Initialization
          continue-on-error: true
          run: |
            git config --global user.name ${{ secrets.GH_NAME }}
            git config --global user.email ${{ secrets.GH_MAIL }}
            git config --global credential.helper store
            echo "https://${{ secrets.GH_NAME }}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
-       - name: cloning repo
+       - name: Cloning Cred Repo
          continue-on-error: true
          run: |
            git clone https://${{ secrets.GH_NAME }}:${{ secrets.GH_TOKEN }}@${{ secrets.CREDS }} kairobot
-       - name: Running Forkzilion
+       - name: Running KairoBot
          timeout-minutes: 350
          continue-on-error: true
          run: |
            sudo sh action.sh
-       - name: Loop workflow
+       - name: Loop Workflows
          continue-on-error: true
          run: |
               git clone https://github.com/${GITHUB_REPOSITORY} loop
